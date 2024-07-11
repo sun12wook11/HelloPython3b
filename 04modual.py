@@ -43,3 +43,6 @@ print(dt.datetime.now().strftime('%Y년 %m월 %d일 %H시 %M분 %S초'))
 # 수온 계산기
 
 # 자동차 주행거리 계산
+
+# 컴퓨터 업무 수량 파악
+
