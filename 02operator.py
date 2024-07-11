@@ -87,14 +87,25 @@ print(year1)
 year2 = year1 + year1 * 0.05
 print(year2)
 year3 = year2 + year2 * 0.05
-print(year1)
-year3 = year2 + year2 * 0.05
-print(year1)
-year3 = year2 + year2 * 0.05
-print(year1)
+print(year3)
+year4 = year3 + year3 * 0.05
+print(year4)
+year5 = year4 + year4 * 0.05
+
+# 언더바로 쓴 정수 : , 하면 콤마로 표현가능
+print(f'5년후 총 수령액 : {int(year5): ,} 원')
 
 # 범퍼카 탑승
+c = int(input('신장? '))
+isRide = (c >= 120)
+print(f'{isRide}')
 
 # 범퍼카 탑승 판별
+hei = int(input('키는? '))
+print('true') if 70 <= hei <= 170 else print('false')
 
 # 적자/흑자 판별
+incom = int(input('수입은? '))
+output = int(input('지출은? '))
+set = incom - output
+print('흑자') if 70 <= set <= 170 else print('적자')
