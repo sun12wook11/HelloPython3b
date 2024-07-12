@@ -231,12 +231,93 @@ print(grade)
 
 
 # 속도 위반 경고
+speed = int(input('속도 '))
+
+wa = ''
+if speed > 50:
+    wa = '과속경고'
+
+print(wa)
 # 자동 온도 조절 장치
+
+temp= int(input('온도?'))
+
+msg = '팬 중지'
+if temp >= 40:
+    msg = '팬 가동'
+
+print(msg)
+
+
 # 자동 주문 시스템
+menuIntro = '''
+order?
+'''
+
+menu = int(input(menuIntro))
+
+if menu == 1:
+    msg = '주문?'
+elif menu == 3:
+    msg = '(중국어)?'
+
+print(menuIntro)
+
+
 # 국가 재난 지원금 수령
+
+
 # 개선된 BMI 지수 출력 프로그램
 # 버스 전용차로 단속
 # 마스크 구매 가능 요일 출력
+endbirth=int(input('출생년도 끝자리 입력: '))
+age = int(input('만 나이 입력: '))
+
+result = '언제든 구매가능합니다'
+if age < 65:
+    if endbirth == 1 or endbirth == 6:
+        result = '월요일 구매 가능합니다'
+    elif endbirth == 2 or endbirth == 7:
+        result = '화요일 구매 가능합니다'
+    elif endbirth == 3 or endbirth == 8:
+        result = '수요일 구매 가능합니다'
+    elif endbirth == 4 or endbirth == 9:
+         result = '목요일 구매 가능합니다'
+    elif endbirth == 5 or endbirth == 0:
+         result = '금요일 구매 가능합니다'
+print(result)
+
+# macth
+endbirth=int(input('출생년도 끝자리 입력: '))
+age = int(input('만 나이 입력: '))
+
+result = '언제든 구매가능합니다'
+match endbirth:
+    case 1|6:
+        result = '월'
+    case 2|7:
+        result = '화'
+    case 3|8:
+        result = '수'
+    case 4|9:
+        result = '목'
+    case 5|0:
+        result = '금'
+
+print(result)
+
 # 차량 2부제
+#오늘 날짜의 일짜만 추출
+from datetime import datetime
+day = datetime.today().day
+
+car = int(input('차번호: '))
+
+
 # 생존율 출력
+goldtime = int(input('최초 장비 사용까지 걸린 시간: '))
+live = 1000//goldtime
+print(f'생존률: {live}')
+
 # 전기 요금 계산기
+eleuse = int(input('전기 사용량? '))
