@@ -53,12 +53,7 @@ print(sum)
 
 
 
-# 3과 8의 공배수
-i=1
-while i < 100+1:
-    i += 1
-    if (i % 3==0 and i % 8 == 0):
-        print(i, end=' ')
+
 
 # 369게임 (while로 작성)
 # 값 in str(문자열)
@@ -79,12 +74,18 @@ while i<100+1:
     print(i,jjak)
     i += 1
 
+# 3과 8의 공배수
+i=1
+while i < 100+1:
+    i += 1
+    if (i % 3==0 and i % 8 == 0):
+        print(i, end=' ')
 
 # 삼각형 너비
 
 w = 1
 h = 1
 while w * h < 300:
-    print('삼각형의 넓이: ', w * h, end=' ')
+    print(w,h,'삼각형의 넓이는 ', 1/2*(w * h),'입니다\n')
     w *= 2
     h *= 3
