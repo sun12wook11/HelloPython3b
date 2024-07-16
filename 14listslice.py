@@ -19,4 +19,4 @@ print(alpha[::-1]) # 역방향
 # 문자열 슬라이싱 주민번호 추출
 jumin = '123456-1234567'
 print(jumin[0:6])
-print(jumin[7:8])
+print(jumin[7:8]) #
