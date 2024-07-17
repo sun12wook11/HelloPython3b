@@ -146,6 +146,11 @@ for q in questions:
         print(f"틀렸습니다. 정답은 {q['answer']}입니다.")
 
 # 결과 출력
-print(f"\n정답 개수: {correct_count}")
-print(f"오답 개수: {len(questions) - correct_count}")
-print(f"Total Score: {total_score}")
+print(f'''
+{'-'*30}
+\n정답 개수: {correct_count}
+오답 개수: {len(questions) - correct_count}
+Total Score: {total_score}
+{'-'*30}
+''')
+
