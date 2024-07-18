@@ -65,3 +65,112 @@ print(val)
 # pip install scikit-learn
 # pip install pymysql
 # pip install fastapi
+
+
+# sunSfeed.example
+
+
+# 단위환산(convert/readUnit/printUnit)
+
+def convertUnit(mm):
+    # mm 단위를 다양한 단위로 변환
+    conversions = {
+        'cm': mm / 10,
+        'm': mm / 1000,
+        'inch': mm / 25.4,
+        'ft': mm / 304.8
+    }
+    return conversions
+
+def readUnit():
+    while True:
+        try:
+            mm = float(input("길이(mm)를 입력하세요: "))
+            if mm >= 0:
+                return mm
+            else:
+                print("양수를 입력하세요.")
+        except ValueError:
+            print("유효한 숫자를 입력하세요.")
+
+def printUnit():
+    mm = readUnit()
+    conversions = convertUnit(mm)
+    for unit, value in conversions.items():
+        print(f"{mm} mm --> {value} {unit}")
+
+# 프로그램 실행
+printUnit()
+
+
+
+
+
+
+# 할인된 상품 가격표 출력(discountPrice/readDiscount,printPrices)
+def discountPrice(prices, discount_rate):
+    # 할인율에 따라 할인된 가격을 계산
+    discounted_prices = {}
+    for item, price in prices.items():
+        discounted_prices[item] = price * (1 - discount_rate / 100)
+    return discounted_prices
+
+def readDiscount():
+    while True:
+        try:
+            discount_rate = float(input("오늘의 할인율을 입력하세요: "))
+            if 0 <= discount_rate <= 100:
+                return discount_rate
+            else:
+                print("할인율은 0에서 100 사이의 값이어야 합니다.")
+        except ValueError:
+            print("유효한 숫자를 입력하세요.")
+
+def printPrices():
+    # 상품 가격표
+    prices = {
+        '쌀': 9900,
+        '상추': 1900,
+        '고추': 2900,
+        '마늘': 8900,
+        '통닭': 5600,
+        '햄': 6900,
+        '치즈': 3900
+    }
+
+    # 할인율 입력
+    discount_rate = readDiscount()
+
+    # 할인된 가격 계산
+    discounted_prices = discountPrice(prices, discount_rate)
+
+    # 결과 출력
+    print("\n-- 한빛마트 오늘의 할인 가격표 출력 시스템 --")
+    for item, original_price in prices.items():
+        discounted_price = discounted_prices[item]
+        print(f"{item} : {original_price} 원 -> {discounted_price:.0f} 원 ({discount_rate}% DC)")
+
+# 프로그램 실행
+printPrices()
+
+
+# 주번 유효성 체크(cheakJumin/readJumin/printJumin)
+# 주민등록번호는 13자리로 이루어져 있으며, 앞 6자리는 생년월일, 뒤 7자리 중 첫 번째 숫자는 성별 코드, 나머지 6자리는 지역 및 순서 코드를 의미합니다. 유효한 주민등록번호인지 확인하기 위해서는 다음과 같은 규칙을 따릅니다.
+#
+# 주민등록번호 길이가 13자리인지 확인합니다.
+# 뒤 7자리 중 첫 번째 숫자가 1, 2, 3, 4 중 하나인지 확인합니다. (1, 3은 남자, 2, 4는 여자를 의미)
+# 뒤 7자리 중 첫 번째 숫자를 제외한 나머지 6자리가 유효한 값인지 확인합니다. (000001 ~ 899999 사이의 값)
+# 주민등록번호 유효성 검사 공식에 따라 계산한 결과가 맞는지 확인합니다.
+# 이 때 주민등록번호 유효성 검사 공식은 다음과 같습니다.
+#
+# 주민등록번호 앞 12자리에 각각 2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5를 곱한 값을 모두 더합니다.
+# 그 결과값을 11로 나눈 나머지를 11에서 뺍니다.
+# 계산 결과값이 주민등록번호 마지막 자리 숫자와 일치하면 유효한 주민등록번호입니다.
+# 위 규칙에 따라 주민등록번호 유효성을 검사하는 프로그램을 작성해 보세요.
+# main.py
+
+# main.py
+from sunSfeed.example_module import print_jumin_validation,read_jumin,check_jumin
+
+# 프로그램 실행
+print_jumin_validation()
