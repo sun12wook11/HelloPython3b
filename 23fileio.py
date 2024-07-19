@@ -56,7 +56,7 @@ def save_member_info(filename):
 
     # 파일에 저장 ('a'는 추가 'w'는 새로쓰기/덮어쓰기)
     with open('c:/Java/member.dat', 'a', encoding='UTF-8') as f:
-        f.write(member_info + '\n')
+        f.write(member_info)
 
 # 파일 경로 지정
 filename = 'c:/Java/member.dat'
@@ -80,13 +80,13 @@ def sungjuk(filename):
     mat = input("수학 점수를 입력하세요: ")
 
     # "이름,국어,영어,수학" 형식으로 데이터 생성
-    student_info = f"{name},{kor},{eng},{mat}"
+    student_info = f"{name},{kor},{eng},{mat}\n"
 
     # 파일에 저장 (추가 모드로 열기)
     with open(filename, 'a', encoding='UTF-8') as f:
         writer = csv.writer(f)
         writer.writerow([name, kor, eng, mat])
-        f.write(student_info + '\n')
+        f.write(student_info)
 
 # 파일 경로 지정
 filename = 'c:/Java/sungjuk.dat'
