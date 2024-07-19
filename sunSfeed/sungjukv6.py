@@ -43,6 +43,7 @@ def addSungJuk(sj):
             '양' if sj[5] >= 60 else '가'
     sj.append(grd)
     sjs.append(sj)
+    saveSungJuk()
 
 # 리스트에 저장된 성적 데이터 조회
 def showSungJuk():
@@ -67,13 +68,13 @@ def loadSungJuk():
 
 # 메모리에 생성된 sjs변수의 모든 성적 데이터를
 # sungjukk.dat에 저장
-def saveSungJuk(sjs):
+def saveSungJuk():
+    data=''
+    for sj in sjs:
+        data += f'{sj[0]},{sj[1]},{sj[2]},{sj[3]},{sj[4]},{sj[5]},{sj[6]}\n'
     with open('./sunSfeed/sungjuk.dat', 'w', encoding='utf-8') as f:
-        f.write()
+        f.write(data)
 
 
 # 데이터 초기화 함수 호출
-loadSungJuk()
-
-
-showSungJuk()
+# loadSungJuk()
