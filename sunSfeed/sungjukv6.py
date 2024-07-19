@@ -53,8 +53,8 @@ def showSungJuk():
 
 
 # sungjuk.dat에 저장된 성적데이터를 읽기
-def loadsungjuk():
-    with open('c:/Java/sungjuk.dat', encoding='utf-8') as f:
+def loadSungJuk():
+    with open('C:/Users/cloud6a/Documents/projects2024/HelloPython3c/sunSfeed/sungjuk6.dat', encoding='utf-8') as f:
         rows = f.readlines()
 
     for row in rows:
@@ -68,9 +68,12 @@ def loadsungjuk():
 # 메모리에 생성된 sjs변수의 모든 성적 데이터를
 # sungjukk.dat에 저장
 def saveSungJuk(sjs):
-    pass
+    with open('./sunSfeed/sungjuk.dat', 'w', encoding='utf-8') as f:
+        f.write()
 
-loadsungjuk()
+
+# 데이터 초기화 함수 호출
+loadSungJuk()
 
 
 showSungJuk()
