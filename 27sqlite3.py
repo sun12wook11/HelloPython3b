@@ -110,24 +110,26 @@ conn.close()
 
 # 파이썬으로 데이터베이스 다루기 4 - 데이터 수정
 
-# 1
+import sqlite3
+
+# 1. 데이터베이스에 연결
 conn = sqlite3.connect('db/python.db')
 
-#2
-cursor =conn.cursor()
+# 2. 커서 객체 생성
+cursor = conn.cursor()
 
-# 3
-sql = 'select * from member'
+# 3. 테이블 수정: 'members' 테이블에 'phone' 컬럼 추가
+sql = 'ALTER TABLE members ADD COLUMN phone TEXT'
 
-#4 sql 실행후 결과 집합을 가져옴
+# 4. SQL 실행
 cursor.execute(sql)
-rs = cursor.fetchall()
 
-#5 결과 집합에서 레코드 단위로 읽어와서 회원정보 출력
-result = ''
-for r in rs:
-    result += f'{r[0]}{r[1]}{r[2]}{r[3]}\n'
-print(result)
+# 5. 변경 사항을 커밋
+conn.commit()
+
+# 6. 커서와 연결 종료
+cursor.close()
+conn.close()
 
 #6
 cursor.close()

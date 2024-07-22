@@ -43,8 +43,7 @@ while True:
 
     elif menu == '5':
         print('성적 데이터 삭제')
-        # 삭제 로직 추가 필요
-        pass
+        sjv7.removeSungJuk()
 
     elif menu == '0':
         print('프로그램 종료')
