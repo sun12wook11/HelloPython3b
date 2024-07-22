@@ -49,7 +49,7 @@ def showSungJuk():
         result += f'번호: {sj[0]}, 이름: {sj[0]}, 국어: {sj[1]}, 영어: {sj[2]}, 수학: {sj[3]}, 등록일: {sj[5]}\n'
     print(result)
 
-# 학생 이름으로 성적데이터 조회후 출력
+# 학생 번호로 성적데이터 조회후 출력
 def showOneSungJuk():
     # name = input('조회할 학생 이름은?')
     sjno = input('조회할 학생 번호는?')
