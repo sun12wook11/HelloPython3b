@@ -4,7 +4,7 @@
 import sqlite3
 
 # 학생 번호(sjno)으로 성적데이터 총 갯수 조회
-def getTotalSungJUk():
+def getTotalSungJuk():
     sql = 'select count(sjno) + 1  total from sungjuk'
     cnt = 0
     conn = sqlite3.connect('db/python.db')

@@ -1,8 +1,20 @@
+# 사원데이터 기반 CRUD 기능이 제공되는 프로그램
+# 사원 - empid, fname, lname,email,phone,
+#       hdate,jobid,sal,comm,mgrid,deptid
+# 조회 - 사원번호,이름,이메일,부서번호
+# 상세조회 -특정 사원번호 대상 모든 칼럼 출력
+
+# 3 LAYER - <emp table>
+# 28sungjukV7   -> main     -> 30EMP
+# sungjuk7      -> service  -> emp
+# sungjukv7DAO  -> DAO      -> empDAO
+
+
 # V7 데이터베이스화(sql)
 import sqlite3
 
 
-# 메뉴입력
+# main UI 창 만들기
 def displayMenu():
     # 프로그램 메뉴 정의
     main_menu = '''
@@ -21,9 +33,6 @@ def displayMenu():
     menu = input('=> 메뉴를 선택하세요: ')
     return menu
 
-# 기본 데이터 및 변수 선언
-sjs = [['일지매', 99, 87, 65, 251, 83.7, '우']]
-
 # 성적 데이터 리스트 입력 받기
 def readSungJuk():
     sj = []
@@ -34,12 +43,12 @@ def readSungJuk():
     sj.append(int(input(f"{cnt}번 학생 수학 점수를 입력하세요: ")))
     return sj
 
-# 입력받은 성적 리스트 입력 처리 -> 총점 평균 학점
-# V7 데이터베이스 처리하는 코드로 바꾸자
+# 입력받은 성적 리스트 입력 처리 -> 총점 평균 학점 계산 + DB 업로드
 def addSungJuk(sj):
+    # 점수 계산 학점 출력 함수
     computeSungJuk(sj)
+    # 기존 입력받은 데이터 + 계산된 데이터 합쳐서 DB 업로드
     newSungJuk(sj)
-
 
 # 리스트에 저장된 성적 데이터 조회
 def showSungJuk():
@@ -49,7 +58,7 @@ def showSungJuk():
         result += f'번호: {sj[0]}, 이름: {sj[0]}, 국어: {sj[1]}, 영어: {sj[2]}, 수학: {sj[3]}, 등록일: {sj[5]}\n'
     print(result)
 
-# 학생 번호로 성적데이터 조회후 출력
+# 학생 번호(sjno)로 성적데이터 조회후 출력
 def showOneSungJuk():
     # name = input('조회할 학생 이름은?')
     sjno = input('조회할 학생 번호는?')
@@ -64,7 +73,7 @@ def showOneSungJuk():
 # ------------------------------
 
 
-# 학생 이름으로 성적데이터 총 갯수 조회
+# 학생 번호(sjno)으로 성적데이터 총 갯수 조회
 def getTotalSungJUk():
     sql = 'select count(sjno) + 1  total from sungjuk'
     cnt = 0
@@ -78,7 +87,7 @@ def getTotalSungJUk():
     conn.close()
     return cnt
 
-# 입력 받은거 성적처리 계산
+# 입력 받은거 성적처리 계산 -> 총점 평균 학점 계산(compute)
 def computeSungJuk(sj):
     sj.append(sj[1] + sj[2] + sj[3])
     sj.append(sj[4] / 3)

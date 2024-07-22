@@ -29,7 +29,7 @@ def displayMenu():
 # 성적 데이터 리스트 입력 받기
 def readSungJuk():
     sj = []
-    cnt = sjv7dao.getTotalSungJUk()
+    cnt = sjv7dao.getTotalSungJuk()
     sj.append(input(f"{cnt}번 학생 이름을 입력하세요: "))
     sj.append(int(input(f"{cnt}번 학생 국어 점수를 입력하세요: ")))
     sj.append(int(input(f"{cnt}번 학생 영어 점수를 입력하세요: ")))
@@ -48,7 +48,7 @@ def showSungJuk():
     result =''
     sjs = sjv7dao.readAllSungJuk()
     for sj in sjs:
-        result += f'번호: {sj[0]}, 이름: {sj[0]}, 국어: {sj[1]}, 영어: {sj[2]}, 수학: {sj[3]}, 등록일: {sj[5]}\n'
+        result += f'번호: {sj[0]}, 이름: {sj[1]}, 국어: {sj[2]}, 영어: {sj[3]}, 수학: {sj[4]}, 등록일: {sj[5]}\n'
     print(result)
 
 # 학생 번호(sjno)로 성적데이터 조회후 출력
