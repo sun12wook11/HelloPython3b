@@ -30,8 +30,7 @@ while True:
 
     elif menu == '3':
         print('성적 데이터 상세조회')
-        # 상세 조회 로직 추가 필요
-        pass
+        sjv7.showOneSungJuk()
 
     elif menu == '4':
         print('성적 데이터 수정')
