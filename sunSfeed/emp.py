@@ -84,3 +84,13 @@ def showOneEmployees():
     #             '미' if sj[5] >= 70 else \
     #             '양' if sj[5] >= 60 else '가'
     #     sj.append(grd)
+
+
+#
+def removeEmp():
+    empid = input('삭제할 사원의 사원번호는? ')
+    result = '데이터가 존재하지 않아요!!'
+    cnt = eda.deleteEmp(empid)
+    if cnt > 0:
+        result = f'{cnt}건의 데이터가 삭제됨!!'
+    print(cnt, '건의 데이터가 삭제됨!!')
