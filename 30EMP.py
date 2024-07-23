@@ -32,12 +32,11 @@ while True:
 
     elif menu == '4':
         print('직원 데이터 수정')
-        # 수정 로직 추가 필요
-        pass
+        emp.modifyEmp()
 
     elif menu == '5':
         print('직원 데이터 삭제')
-        emp.removeEmp
+        emp.removeEmp()
 
     elif menu == '0':
         print('프로그램 종료')

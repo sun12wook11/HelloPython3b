@@ -3,26 +3,17 @@ import sqlite3
 
 # # empid로 성적데이터 총 갯수 조회
 def getTotalEmp():
-    sql = 'SELECT COUNT(empid) FROM EMPLOYEES'
+    sql = 'select count(empid) + 1  total from EMPLOYEES'
+    cnt = 0
     conn = sqlite3.connect('db/python.db')
     cursor = conn.cursor()
     cursor.execute(sql)
-    cnt = cursor.fetchone()[0]
+    rs = cursor.fetchall()
+    for r in rs:
+        cnt = r[0]
     cursor.close()
     conn.close()
     return cnt
-    # def getTotalEmp():
-    #     sql = 'select count(empid) + 1  total from EMPLOYEES'
-    #     cnt = 0
-    #     conn = sqlite3.connect('db/python.db')
-    #     cursor = conn.cursor()
-    #     cursor.execute(sql)
-    #     rs = cursor.fetchall()
-    #     for r in rs:
-    #         cnt = r[0]
-    #     cursor.close()
-    #     conn.close()
-    #     return cnt
 
 # 처리된 성적데이터를 테이블에 저장
 def newEmployees(ep):
@@ -77,3 +68,17 @@ def deleteEmp(empid):
     cursor.close()
     conn.close()
     return cnt
+
+
+
+def updateEmp(emp):
+    sql = 'update EMPLOYEES set email=? ,phone=? ,hdate=? ,jobid=? ,sal=? ,comm=? ,mgrid=?, deptid=? \
+            where empid = ?;'
+    conn = sqlite3.connect('db/python.db')
+    cursor = conn.cursor()
+    params = (emp[3],emp[4],emp[5],emp[6],emp[7], emp[8],emp[9],emp[10],emp[0])
+    cursor.execute(sql,  params)
+    print(cursor.rowcount, '건의 데이터 수정됨!')
+    conn.commit()
+    cursor.close()
+    conn.close()

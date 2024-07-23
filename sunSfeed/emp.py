@@ -50,9 +50,9 @@ def addEmployees(ep):
     # computeEmployees(ep)
     # 기존 입력받은 데이터 + 계산된 데이터 합쳐서 DB 업로드
     emp = readEmployees()
-    emp[8] = float(emp[8]) if emp[8] != 0 else None
-    emp[9] = float(emp[9]) if emp[9] != 0 else None
-    emp[10] = float(emp[10]) if emp[10] != 0 else None
+    emp[8] = float(emp[8]) if emp[8] != '0' else None
+    emp[9] = float(emp[9]) if emp[9] != '0' else 'null'
+    emp[10] = float(emp[10]) if emp[10] != '0' else 'null'
 
 # 리스트에 저장된 직원 데이터 조회
 def showEmployees():
@@ -94,3 +94,32 @@ def removeEmp():
     if cnt > 0:
         result = f'{cnt}건의 데이터가 삭제됨!!'
     print(cnt, '건의 데이터가 삭제됨!!')
+
+
+# 학생 번호를 입력받아 데이터 수정
+def modifyEmp():
+    empid = input('수정할 사원번호는? ')
+    emp = eda.readOneEmployees(empid)
+    result = '수정할 데이터가 존재하지 않아요!'
+    if emp:    # 수정할 데이터가 존재한다면
+        emp = readAgainEmp(emp) # 다시입력받기
+        cnt = eda.updateEmp(emp) # 입력값으로 수정
+    print(result)
+
+def readAgainEmp(emp):
+    nemp = [] # 수정될 데이터 받는곳. 리스트 초기화.
+    nemp.append(emp[0])
+    nemp.append(emp[1]) # 직원 퍼스트네임 리스트에 추가
+    nemp.append(emp[2]) # 직원 라스트네임 리스트에 추가
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 EMAIL을 입력하세요(기존:{emp[3]}): "))
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 PHONE_NUMBER를 입력하세요(기존:{emp[4]}): "))
+    nemp.append(emp[5])
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 JOB_ID를 입력하세요(기존:{emp[6]}): "))
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 SALARY를 입력하세요(기존:{emp[7]}): "))
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 COMMISSION_PCT를 입력하세요 (기존:{emp[8]},소수점 포함, 없으면 0): "))
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 MANAGER_ID를 입력하세요: (기존:{emp[9]}, 없으면 0)"))
+    nemp.append(input(f"{emp[0]}번 직원 {emp[1]} {emp[2]}의 DEPARTMENT_ID를 입력하세요: (기존:{emp[10]}, 없으면 0)"))
+    nemp[8] = float(nemp[8]) if nemp[8] != '0' else None
+    nemp[9] = int(nemp[9]) if nemp[9] != '0' else None
+    nemp[10] = int(nemp[10]) if nemp[10] != '0' else None
+    return nemp # 수정된 성적 데이터 반환
