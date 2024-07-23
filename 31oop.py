@@ -163,7 +163,7 @@ class SungJuk2:
 
 
 # 성적 개체 생성 및 초기화
-sj = SungJuk2('',99,98,99)
+sj = SungJuk2('일지매',99,98,99)
 
 # 성적 객체 출력
 print(sj.name, sj.kor, sj.eng, sj.mat)
@@ -183,7 +183,6 @@ class SungJukService:
         eng = int(input('영어는 ?'))
         mat = int(input('수학은 ?'))
         return SungJuk2(name,kor,eng,mat)
-
     def compute_sungjuk(self, sj):
         sj.tot = sj.kor + sj.eng + sj.mat
         sj.avg = sj.tot / 3
@@ -197,9 +196,9 @@ class SungJukService:
 
 # 객체화
 sjsrv = SungJukService()
-
 sj = sjsrv.read_sungjuk()
 sjsrv.compute_sungjuk(sj)
+
 print(sj)
 print(sj.tot, sj.avg, sj.grd)
 

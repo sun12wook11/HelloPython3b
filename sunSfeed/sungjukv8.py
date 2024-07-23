@@ -62,6 +62,8 @@ def showOneSungJuk():
                   f'총점: {sj[5]}, 평균: {sj[6]:.1f}, 등급: {sj[7]}, 등록일: {sj[8]}')
     print(result)
 
+# ------------------------------
+
 # 입력 받은거 성적처리 계산 -> 총점 평균 학점 계산(compute)
 def computeSungJuk(sj):
     sj.append(sj[1] + sj[2] + sj[3])
