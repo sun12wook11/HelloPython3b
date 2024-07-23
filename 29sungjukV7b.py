@@ -38,8 +38,7 @@ while True:
 
     elif menu == '4':
         print('성적 데이터 수정')
-        # 수정 로직 추가 필요
-        pass
+        sjv7.modifySungJuk()
 
     elif menu == '5':
         print('성적 데이터 삭제')

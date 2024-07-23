@@ -78,3 +78,40 @@ def computeSungJuk(sj):
 def removeSungJuk():
     sjno = input('삭제할 학생번호? ')
     sjv7dao.deletesSungJuk(sjno)
+
+# 학생 번호를 입력받아 데이터 수정
+def modifySungJuk():
+    sjno = input('수정할 학생번호는? ')
+    sj = sjv7dao.readOneSungJuk(sjno)
+
+    if sj:    # 수정할 데이터가 존재한다면
+        sj = readAgainSungJuk(sj) # 다시입력받기
+        sjv7dao.updateSungJuk(sj) # 입력값으로 수정
+    else:
+        print('수정할 데이터가 존재하지 않아요!')
+
+# 기존 성적 데이터를 확인하면서 수정할 성적데이터 재입력
+def readAgainSungJuk(sj):
+    # 수정된 성적 데이터를 저장할 리스트 초기화
+    nsj = [] # new 새로받은값 nsj
+
+    # 기존 성적 데이터에서 학생 이름을 nsj 리스트에 추가
+    nsj.append(sj[1]) # 학생 이름
+
+    # 기존 국어 점수를 보여주고 새로운 국어 점수를 입력받아 nsj 리스트에 추가
+    nsj.append(int(input(f"{sj[1]} 학생의 수정할 국어 점수를 입력하세요(기존:{sj[2]}): ")))
+
+    # 기존 영어 점수를 보여주고 새로운 영어 점수를 입력받아 nsj 리스트에 추가
+    nsj.append(int(input(f"{sj[1]} 학생의 수정할 영어 점수를 입력하세요(기존:{sj[3]}): ")))
+
+    # 기존 수학 점수를 보여주고 새로운 수학 점수를 입력받아 nsj 리스트에 추가
+    nsj.append(int(input(f"{sj[1]} 학생의 수정할 수학 점수를 입력하세요(기존:{sj[4]}): ")))
+
+    # 입력된 점수를 바탕으로 성적 계산 (computeSungJuk 함수 호출)
+    computeSungJuk(nsj)
+
+    # 학생 번호를 기존 성적 데이터에서 가져와 nsj 리스트에 추가
+    nsj.append(sj[0]) # nsj[8] - 학생 번호
+
+    # 수정된 성적 데이터를 반환
+    return nsj
