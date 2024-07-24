@@ -11,6 +11,8 @@
 # V8 클래스 기반으로 프로그램 작성
 
 
+# main consol
+
 
 import sys
 from sunSfeed.oop.services import SungJukService as sjv8
