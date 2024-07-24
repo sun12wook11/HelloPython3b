@@ -11,7 +11,11 @@ class SungJukService:
                     # 정적메서드로 정의된 함수는 self 매개변수 지정 할 필요없다.
                     # 호츨방법 : 클래스명.함수명
     def display_menu():
-        # 프로그램 메뉴 정의
+        """
+        프로그램 메뉴 UI 호출 함수
+        :return:
+        """
+
         main_menu = '''
         ================== 
          성적 프로그램 v8
@@ -30,6 +34,10 @@ class SungJukService:
 
     @staticmethod
     def read_sungjuk():
+        """
+        학생 정보를 입력하는 함수
+        :return:
+        """
         sjno = input("새로운 학생 번호를 입력하세요: ")
         name = input(f"새로운 학생 이름을 입력하세요: ")
         kor = int(input(f"새로운 학생 국어 점수를 입력하세요: "))
@@ -39,6 +47,10 @@ class SungJukService:
 
     @staticmethod
     def add_sungjuk():
+        """
+        read_sungjuk으로 입력받은 데이터를 추가(저장)하는 함수
+        :return:
+        """
         sj = SungJukService.read_sungjuk()
         cnt = sjdao.insert_sungjuk(sj)
         result = f'{cnt}건의 데이터 추가 성공!!'
@@ -46,6 +58,11 @@ class SungJukService:
 
     @staticmethod
     def compute_sungjuk(sj):
+        """
+        계산하는 함수
+        :param sj: 입력받은 함수
+        :return: 계산된 값들
+        """
         sj.tot = sj.kor + sj.eng + sj.mat
         sj.avg = sj.tot / 3
         sj.grd = '가'
@@ -56,6 +73,10 @@ class SungJukService:
 
     @staticmethod
     def show_sungjuk():
+        """
+        모든 학생 데이터중 이름국어영어수학만 보여주는 함수
+        :return:
+        """
         result = ''
         sjs = sjdao.select_sungjuk()
         for sj in sjs:
@@ -64,6 +85,10 @@ class SungJukService:
 
     @staticmethod
     def showone_sungjuk():
+        """
+        상세정보를 보여주는 함수
+        :return:
+        """
         sjno = input('조회할 학생의 번호를 입력하세요: ')
         sj = sjdao.selectone_sungjuk(sjno)
         if sj:
@@ -74,6 +99,10 @@ class SungJukService:
 
     @staticmethod
     def modify_sungjuk():
+        """
+        데이터를 수정하는 함수
+        :return:
+        """
         sjno = input('수정할 학생의 번호를 입력하세요: ')
         sj = sjdao.selectone_sungjuk(sjno)
         if sj:
@@ -87,6 +116,7 @@ class SungJukService:
 
     @staticmethod
     def remove_sungjuk():
+        """ 데이터를 지우는 함수"""
         sjno = input('삭제할 학생의 번호를 입력하세요: ')
         cnt = sjdao.delete_sungjuk(sjno)
         result = f'{cnt}건의 데이터 삭제 성공!!'

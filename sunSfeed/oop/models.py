@@ -12,6 +12,10 @@ class SungJuk:
 
 
     def calculate_grade(self):
+        """
+        학점 계산하는 함수
+        :return: grd 학점
+        """
         if self.avg >= 90:
             return '수'
         elif self.avg >= 80:
