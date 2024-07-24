@@ -110,3 +110,116 @@ class SungJukDAO:
         conn.commit()
         SungJukDAO._dis_conn(conn, cursor)
         return cnt
+
+
+
+
+
+# 사원 DAO 클래스
+
+# import pymysql
+# host = '52.78.137.248'  # 마리아디비 인스턴스 IP
+# dbname = 'clouds2024'   # 데이터베이스 이름
+# user = 'clouds2024'     # 데이터베이스 유저
+# passwd = 'clouds2024'   # 데이터베이스 비번
+
+# 사원 DAO 클래스
+class empDAO:
+    @staticmethod
+    def _make_conn():
+        """
+        connect 연결과 cursor를 만드는 함수이다.
+        :return: conn, cursor 값을 반환한다
+        """
+        conn = pymysql.connect(host=host, user=user,
+                               password=passwd, database=dbname, charset='utf8')
+        cursor = conn.cursor()
+        return conn, cursor
+
+
+    @staticmethod
+    def _dis_conn(conn, cursor):
+        """
+        연결과 커서를 닫는 함수
+        :param conn:
+        :param cursor:
+        :return:
+        """
+        cursor.close()
+        conn.close()
+
+
+    @staticmethod
+    def gettotal_emp():
+        sql = 'select count(empid) + 99  total from EMPLOYEES'
+        cnt = 0
+        conn, cursor = empDAO._make_conn()
+        cursor.execute(sql)
+        rs = cursor.fetchall()
+        for r in rs:
+            cnt = r[0]
+        empDAO._dis_conn(conn, cursor)
+        return cnt
+
+
+    # 처리된 성적데이터를 테이블에 저장
+    @staticmethod
+    def insert_emp(emp):
+        sql =   "insert into EMPLOYEES values" \
+                "(%s,%s,%s,%s, %s,%s,%s,%s, %s,%s,%s)"
+        conn, cursor = empDAO._make_conn()
+        params = (emp.empid,emp.fname,emp.lname,
+                  emp.email,emp.phone,emp.hdate,
+                  emp.jobid,emp.sal,emp.comm,emp.mgrid,emp.deptid)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        empDAO._dis_conn(conn, cursor)
+        return cnt
+
+
+    # 성적 데이터 중 empid,fname,lname,email,deptid 컬럼 전체 데이터 조회
+    @staticmethod
+    def select_emp():
+        sql = 'SELECT empid, fname, lname, email, deptid FROM EMPLOYEES'
+        conn, cursor = empDAO._make_conn()
+        cursor.execute(sql)
+        eps = cursor.fetchall()
+        empDAO._dis_conn(conn, cursor)
+        return eps
+
+
+    # 직원 한명의 성적 상세 조회
+    @staticmethod
+    def selectone_emp(empid):
+        sql = 'SELECT * FROM EMPLOYEES WHERE empid = %s'
+        conn, cursor = empDAO._make_conn()
+        params = (empid,)
+        cursor.execute(sql, params)
+        ep = cursor.fetchone()
+        empDAO._dis_conn(conn, cursor)
+        return ep
+
+
+    @staticmethod
+    def delete_emp(empid):
+        sql = 'DELETE FROM EMPLOYEES WHERE empid = %s'
+        conn, cursor = empDAO._make_conn()
+        params = (empid,)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        empDAO._dis_conn(conn, cursor)
+        return cnt
+
+
+    @staticmethod
+    def update_emp(emp):
+        sql = 'UPDATE EMPLOYEES SET email=%s, phone=%s, hdate=%s, jobid=%s, sal=%s, comm=%s, mgrid=%s, deptid=%s WHERE empid = %s'
+        conn, cursor = empDAO._make_conn()
+        params = (emp.email, emp.phone, emp.hdate, emp.jobid, emp.sal, emp.comm, emp.mgrid, emp.deptid, emp.empid)
+        cursor.execute(sql, params)
+        cnt = cursor.rowcount
+        conn.commit()
+        empDAO._dis_conn(conn, cursor)
+        return cnt
