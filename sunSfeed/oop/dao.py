@@ -113,7 +113,7 @@ class SungJukDAO:
 
 
 
-
+from sunSfeed.oop.models import Employees
 
 # 사원 DAO 클래스
 
@@ -196,9 +196,15 @@ class empDAO:
         conn, cursor = empDAO._make_conn()
         params = (empid,)
         cursor.execute(sql, params)
-        ep = cursor.fetchone()
+        rs = cursor.fetchone()
+        if rs:
+            emp = Employees(rs[0],rs[1],rs[2],rs[3],rs[4],
+                            rs[5],rs[6],rs[7],rs[8],rs[9],rs[10])
+        else:
+            emp = None
+
         empDAO._dis_conn(conn, cursor)
-        return ep
+        return emp
 
 
     @staticmethod
