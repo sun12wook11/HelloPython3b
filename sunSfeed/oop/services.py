@@ -218,7 +218,7 @@ class EmployeesService:
 
     @staticmethod
     def remove_emp():
-        """ 데이터를 지우는 함수"""
+        """ 데이터를 지우는 함수 """
         empid = input('삭제할 사원의 번호를 입력하세요: ')
         cnt = empdao.delete_emp(empid)
         result = f'{cnt}건의 데이터 삭제 성공!!'
